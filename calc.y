@@ -9,7 +9,7 @@ import "fmt"
 
 %token NUM
 %token ADD SUB MUL DIV
-%token CR
+%token LP RP CR
 %%
 
 input
@@ -35,7 +35,8 @@ term
 ;
 
 primary
-        : NUM { $$.n = $1.n; }
-        | SUB primary { $$.n = -$2.n; }
+        : NUM           { $$.n =  $1.n; }
+        | LP exp RP     { $$.n =  $2.n; }
+        | SUB primary   { $$.n = -$2.n; }
 ;
 %%
