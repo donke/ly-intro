@@ -4,6 +4,7 @@
 /\*/ { return MUL }
 /\// { return DIV }
 /[0-9]*/ { lval.n, _ = strconv.Atoi(yylex.Text()); return NUM }
+/\n/ { return CR }
 /./ { return int(yylex.Text()[0]) }
 //
 package main

@@ -9,14 +9,15 @@ import "fmt"
 
 %token NUM
 %token ADD SUB MUL DIV
+%token CR
 %%
 
 input: /* empty */
         | input line
 ;
 
-line:   '\n'
-        | exp '\n'  { fmt.Println($1.n); }
+line:   CR
+        | exp CR  { fmt.Println($1.n); }
 ;
 
 exp:    NUM             { $$.n = $1.n; }
