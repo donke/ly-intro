@@ -36,5 +36,6 @@ term
 
 primary
         : NUM { $$.n = $1.n; }
+        | SUB primary { $$.n = -$2.n; }
 ;
 %%
