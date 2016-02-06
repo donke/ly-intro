@@ -23,11 +23,18 @@ line
 ;
 
 exp
-        : NUM           { $$.n = $1.n; }
-        | exp exp ADD   { $$.n = $1.n + $2.n; }
-        | exp exp SUB   { $$.n = $1.n - $2.n; }
-        | exp exp MUL   { $$.n = $1.n * $2.n; }
-        | exp exp DIV   { $$.n = $1.n / $2.n; }
-        | exp 'n'       { $$.n = -$1.n; }
+        : term
+        | exp ADD term { $$.n = $1.n + $3.n; }
+        | exp SUB term { $$.n = $1.n - $3.n; }
+;
+
+term
+        : primary
+        | term MUL primary { $$.n = $1.n * $3.n; }
+        | term DIV primary { $$.n = $1.n / $3.n; }
+;
+
+primary
+        : NUM { $$.n = $1.n; }
 ;
 %%
