@@ -8,6 +8,7 @@ import "fmt"
 }
 
 %token NUM
+%token ADD
 %%
 
 input: /* empty */
@@ -19,7 +20,7 @@ line:   '\n'
 ;
 
 exp:    NUM             { $$.n = $1.n; }
-        | exp exp '+'   { $$.n = $1.n + $2.n; }
+        | exp exp ADD   { $$.n = $1.n + $2.n; }
         | exp exp '-'   { $$.n = $1.n - $2.n; }
         | exp exp '*'   { $$.n = $1.n * $2.n; }
         | exp exp '/'   { $$.n = $1.n / $2.n; }
