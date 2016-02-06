@@ -1,5 +1,8 @@
 /[ \t]/ { /* Skip blanks and tabs. */ }
 /\+/ { return ADD }
+/\-/ { return SUB }
+/\*/ { return MUL }
+/\// { return DIV }
 /[0-9]*/ { lval.n, _ = strconv.Atoi(yylex.Text()); return NUM }
 /./ { return int(yylex.Text()[0]) }
 //
